@@ -9,6 +9,6 @@ data class Restaurante(
     @PrimaryKey(autoGenerate = false)
     val id: String,
     val nome: String,
-    val localização: Location,
+    val localizacao: Location,
     val reviews: List<Review>
 )

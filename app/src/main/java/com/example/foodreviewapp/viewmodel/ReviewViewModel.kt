@@ -6,20 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodreviewapp.data.model.Review
 import com.example.foodreviewapp.data.repository.ReviewRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class ReviewViewModel @Inject constructor(private val reviewRepository: ReviewRepository) : ViewModel() {
+class ReviewViewModel (private val reviewRepository: ReviewRepository) : ViewModel() {
     private val _reviewsLiveData = MutableLiveData<List<Review>>()
     val reviewsLiveData: LiveData<List<Review>> = _reviewsLiveData
 
-    fun getReviews() {
+    fun getReviews() : List<Review> {
         viewModelScope.launch {
             val reviews = reviewRepository.getReviews()
             _reviewsLiveData.value = reviews
         }
+        return reviewRepository.getReviews()
     }
 
     fun addReview(review: Review) {

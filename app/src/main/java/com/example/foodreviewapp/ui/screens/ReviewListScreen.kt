@@ -1,44 +1,42 @@
 package com.example.foodreviewapp.ui.screens
 
-import android.widget.RatingBar
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.foodreviewapp.data.model.Review
-import com.example.foodreviewapp.util.Screen
 import com.example.foodreviewapp.viewmodel.ReviewViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun ReviewListScreen(
-    viewModel: ReviewViewModel,
-    navController: NavController
-) {
-    val reviews by viewModel.reviewsLiveData.observeAsState(initial = emptyList())
+fun ReviewListScreen(navController: NavController) {
+    val viewModel: ReviewViewModel = getViewModel()
+    val reviews = remember { mutableStateListOf<Review>() }
 
-    LazyColumn {
-        itemsIndexed(reviews) { index, review ->
-            ReviewListItem(review = review)
-        }
+    LaunchedEffect(Unit) {
+        val listaReviews = viewModel.getReviews()
+        reviews.addAll( listaReviews)
     }
 
-    Button(onClick = { navController.navigate(Screen.RESTAURANTE_LIST.name) }) {
-        Text(text = "Voltar para Restaurantes")
+    LazyColumn(modifier = Modifier.fillMaxWidth()) {
+        items(reviews) { review ->
+            ReviewListItem(review)
+        }
     }
 }
 

@@ -6,12 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodreviewapp.data.model.Comida
 import com.example.foodreviewapp.data.repository.ComidaRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class ComidaViewModel @Inject constructor(private val comidaRepository: ComidaRepository) : ViewModel() {
+class ComidaViewModel (private val comidaRepository: ComidaRepository) : ViewModel() {
     private val _mealsLiveData = MutableLiveData<List<Comida>>()
     val mealsLiveData: LiveData<List<Comida>> = _mealsLiveData
 
@@ -37,6 +34,13 @@ class ComidaViewModel @Inject constructor(private val comidaRepository: ComidaRe
     fun deleteComida(comida: Comida) {
         viewModelScope.launch {
             comidaRepository.deleteComida(comida)
+        }
+    }
+
+    init {
+        viewModelScope.launch {
+            val result = comidaRepository.getRefeições()
+            _mealsLiveData.postValue(result)
         }
     }
 }

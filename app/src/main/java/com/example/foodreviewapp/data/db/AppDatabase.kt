@@ -12,12 +12,11 @@ import com.example.foodreviewapp.data.model.Comida
 import com.example.foodreviewapp.data.model.Restaurante
 import com.example.foodreviewapp.data.model.Review
 import com.example.foodreviewapp.util.LocationConverter
-import com.example.foodreviewapp.util.ReviewsListConverter
 import com.example.foodreviewapp.util.StringListConverter
 
 // Classe de banco de dados principal
 @Database(entities = [Comida::class, Restaurante::class, Review::class], version = 1)
-@TypeConverters(LocationConverter::class,StringListConverter::class, ReviewsListConverter::class)
+@TypeConverters(LocationConverter::class,StringListConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun comidaDao(): ComidaDao
     abstract fun restauranteDao(): RestauranteDao

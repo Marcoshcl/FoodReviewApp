@@ -12,14 +12,8 @@ import com.example.foodreviewapp.ui.screens.ReviewListScreen
 import com.example.foodreviewapp.util.Screen
 import com.example.foodreviewapp.viewmodel.RestauranteViewModel
 import com.example.foodreviewapp.viewmodel.ReviewViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var restauranteViewModel: RestauranteViewModel
-    private val reviewViewModel: ReviewViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,10 +22,10 @@ class MainActivity : ComponentActivity() {
 
             NavHost(navController = navController, startDestination = Screen.RESTAURANTE_LIST.name) {
                 composable(Screen.RESTAURANTE_LIST.name) {
-                    RestauranteListScreen(restauranteViewModel,navController)
+                    RestauranteListScreen(navController)
                 }
                 composable(Screen.REVIEW_LIST.name) {
-                    ReviewListScreen(reviewViewModel,navController)
+                    ReviewListScreen(navController)
                 }
             }
         }
