@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/reviewFragment">
+
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.foodreviewapplication.ui.reviews.ReviewFragment"
+        android:label="fragment_reviews">
+
+        <action
+            android:id="@+id/action_reviewFragment_to_addEditReviewFragment"
+            app:destination="@id/addEditReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditReviewFragment"
+        android:name="com.example.foodreviewapplication.ui.addeditreview.AddEditReviewFragment"
+        android:label="AddEditReviewFragment">
+
+        <argument
+            android:name="review"
+            android:defaultValue="@null"
+            app:argType="com.example.foodreviewapplication.data.Review"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+</navigation>

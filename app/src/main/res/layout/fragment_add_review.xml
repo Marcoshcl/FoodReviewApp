@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_margin="@dimen/spacing_4x">
+
+            <EditText
+                android:id="@+id/edit_text_nome_do_restaurante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome do Restaurante"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edit_text_nome_do_prato"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome do Prato"
+                android:inputType="text" />
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:numStars="5"/>
+
+            <ImageSwitcher
+                android:id="@+id/image_switcher"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_4x"
+                android:visibility="gone"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Adicionar fotos"
+                android:id="@+id/button_add_fotos"
+                android:visibility="gone"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Adicionar localização"
+                android:id="@+id/button_add_loc"/>
+
+            <EditText
+                android:id="@+id/edit_text_localizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Localização"
+                android:visibility="gone"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/text_view_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edit_text_comentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite seu comentario"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Salvar Review"
+                android:id="@+id/button_salvar_review"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Deletar Review"
+                android:visibility="gone"
+                android:id="@+id/button_deletar_review"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
